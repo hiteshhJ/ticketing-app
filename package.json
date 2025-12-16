@@ -1,0 +1,58 @@
+{
+  "name": "web-application-template",
+  "version": "3.0.0",
+  "description": "Opinionated template for building a Sainsbury's web application",
+  "scripts": {
+    "dev": "next dev",
+    "start": "next start",
+    "build": "next build",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "next lint",
+    "prettier": "prettier --write \"./src/**/*.{ts,tsx,css}\""
+  },
+  "dependencies": {
+    "@sainsburys-tech/fable": "^5.9.1",
+    "@sainsburys-tech/nextjs-support": "^1.1.14",
+    "@sainsburys-tech/theme-provider": "^3.1.14",
+    "@tailwindcss/postcss": "^4.1.11",
+    "clsx": "^2.1.1",
+    "next": "15.2.6",
+    "next-auth": "^5.0.0-beta.25",
+    "next-safe-action": "^7.10.4",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "zod": "^3.24.2"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.2.0",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.11.30",
+    "@types/react": "19.0.12",
+    "@types/react-dom": "19.0.4",
+    "@typescript-eslint/eslint-plugin": "^8.14.0",
+    "@typescript-eslint/parser": "^8.14.0",
+    "autoprefixer": "^10",
+    "eslint": "^8",
+    "eslint-config-next": "15.2.4",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "eslint-plugin-sonarjs": "^1.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "postcss": "^8.5.6",
+    "prettier": "^3.3.3",
+    "tailwindcss": "^4.1.11",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.3"
+  },
+  "author": "Sainsbury's Supermarkets Ltd",
+  "private": true,
+  "license": "UNLICENSED",
+  "overrides": {
+    "@types/react": "19.0.12",
+    "@types/react-dom": "19.0.4"
+  }
+}

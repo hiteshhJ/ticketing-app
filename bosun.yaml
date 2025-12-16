@@ -1,0 +1,16 @@
+bosun:
+  deployment:
+    config:
+      serviceName: boilerplate
+      public: false
+      replicaCount: 1
+      resources:
+        limits:
+          cpu: "1"
+          memory: 256Mi
+        requests:
+          cpu: "200m"
+          memory: 256Mi
+    configOverride:
+      dev: config/dev/bosun.yaml
+      prd: config/prd/bosun.yaml

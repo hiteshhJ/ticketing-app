@@ -1,0 +1,7 @@
+.counterError {
+    outline: solid 2px var(--fable-color-background-error-bold-default); /* Tailwind red-400 */
+}
+
+.counterSuccess {
+    outline: solid 2px var(--fable-color-background-success-subtlest-active); /* Tailwind green-400 */
+}

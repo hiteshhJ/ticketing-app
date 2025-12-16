@@ -1,0 +1,53 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/reusable-build.yml
+    secrets: inherit
+
+  deploy-dev:
+    name: Deploy to dev
+    needs: build
+    runs-on:
+      - self-hosted
+      - deploy
+    environment:
+      name: dev
+      url: https://${{ steps.deploy.outputs.DEPLOYED_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: sainsburys-tech/bosun-actions-deploy@v1
+        id: deploy
+        with:
+          app: ${{ needs.build.outputs.app-name }}
+          environment: dev
+          image-tag: ${{ needs.build.outputs.image-tag }}
+
+  deploy-prd:
+    name: Deploy to prd
+    needs:
+      - build
+      - deploy-dev
+    runs-on:
+      - self-hosted
+      - deploy
+    environment:
+      name: prd
+      url: https://${{ steps.deploy.outputs.DEPLOYED_URL }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: sainsburys-tech/bosun-actions-deploy@v1
+        id: deploy
+        with:
+          app: ${{ needs.build.outputs.app-name }}
+          environment: prd
+          image-tag: ${{ needs.build.outputs.image-tag }}

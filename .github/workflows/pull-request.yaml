@@ -1,0 +1,14 @@
+name: Pull Request
+
+on:
+  pull_request:
+    types: [ opened, reopened, synchronize ]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    uses: ./.github/workflows/reusable-build.yml
+    secrets: inherit

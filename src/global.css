@@ -1,0 +1,25 @@
+@import '@sainsburys-tech/fable-tokens/css/sainsburys';
+@import '@sainsburys-tech/style';
+@import '@sainsburys-tech/style/typography/css/sainsburys.css';
+
+/** Fable: Enable any of the following imports to use the corresponding brand styles.
+ *  For example, to use Argos mode, import `@sainsburys-tech/fable-tokens/css/argos`.
+ *  Only import the brands you need to reduce bundle size.
+
+@import '@sainsburys-tech/fable-tokens/css/argos';
+@import '@sainsburys-tech/fable-tokens/css/nectar';
+@import '@sainsburys-tech/fable-tokens/css/habitat';
+@import '@sainsburys-tech/fable-tokens/css/tu';
+@import '@sainsburys-tech/fable-tokens/css/nectar360';
+
+*  Typography imports, only import the ones you need.
+*  For example, to use Argos typography, import `@sainsburys-tech/style/typography/css/argos.css`.
+*  Only import the brands you need to reduce bundle size.
+
+@import '@sainsburys-tech/style/typography/css/argos.css';
+@import '@sainsburys-tech/style/typography/css/nectar.css';
+@import '@sainsburys-tech/style/typography/css/habitat.css';
+@import '@sainsburys-tech/style/typography/css/tu.css';
+@import '@sainsburys-tech/style/typography/css/nectar360.css'; 
+
+*/

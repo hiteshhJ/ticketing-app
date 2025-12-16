@@ -1,0 +1,55 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Counter should render the counter component 1`] = `
+<div>
+  <h2>
+    Example Component
+  </h2>
+  <p>
+    This is an example of a client side component with a server side action. You can change state client side, and then submit it to the server side action - and use the result from that action.
+  </p>
+  <div
+    class="ds-my-5 ds-text-3xl"
+  >
+    Value: 
+    0
+  </div>
+  <div
+    class="ds-c-button-group ds-c-button-group--responsive-sm ds-c-button-group--left ds-c-button-group--gap-lg"
+    data-pkgid="fable-component"
+  >
+    <button
+      class="ds-c-button ds-c-button--secondary ds-c-button--md"
+      data-pkgid="fable-component"
+    >
+      Add
+    </button>
+    <button
+      class="ds-c-button ds-c-button--secondary ds-c-button--md"
+      data-pkgid="fable-component"
+      disabled=""
+    >
+      Subtract
+    </button>
+    <button
+      class="ds-c-button ds-c-button--primary ds-c-button--md"
+      data-pkgid="fable-component"
+    >
+      Call server side action
+    </button>
+  </div>
+  <pre
+    class="ds-border-2 ds-p-2 ds-mt-4 ds-bg-white"
+  >
+    <div>
+      HasErrored: 
+      false
+    </div>
+    <div>
+      HasSucceeded: 
+      false
+    </div>
+    {}
+  </pre>
+</div>
+`;

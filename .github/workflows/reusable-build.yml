@@ -1,0 +1,43 @@
+name: Reusable Build
+
+on:
+  workflow_call:
+    outputs:
+      image-tag:
+        description: The image tag to pass to the deploy job.
+        value: ${{ jobs.build.outputs.short-sha }}
+      app-name:
+        description: The name of the app
+        value: ${{ jobs.build.outputs.app-name }}
+
+jobs:
+  build:
+    runs-on:
+      - self-hosted
+      - build
+    steps:
+      - uses: actions/checkout@v4
+      - uses: sainsburys-tech/bosun-actions-setup@v1
+        name: Setup
+        id: setup
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          job-name: 'build / build'
+      - name: Build and push
+        id: buildpush
+        uses: docker/build-push-action@v6
+        # This if statement prevents immutable images from being overwritten https://bosun-docs-user.int.prd.jspaas.uk/docs/build-deploy/github-actions-tips/#re-pushing-images-to-immutable-ecrs
+        if: ${{ steps.setup.outputs.imageExists == 'false' }}
+        with:
+          push: true
+          secrets: |
+            GITHUB_PACKAGES_AUTH_TOKEN=${{ secrets.READ_PACKAGES_TOKEN }}
+            ${{ fromJson(steps.setup.outputs.dockerParams).secrets }}
+          build-args: ${{ fromJson(steps.setup.outputs.dockerParams).build-args }}
+          tags: ${{ fromJson(steps.setup.outputs.dockerParams).tags }}
+          context: ${{ fromJson(steps.setup.outputs.dockerParams).context }}
+          cache-from: ${{ fromJson(steps.setup.outputs.dockerParams)['cache-from'] }}
+          cache-to: ${{ fromJson(steps.setup.outputs.dockerParams)['cache-to'] }}
+    outputs:
+      short-sha: ${{ fromJson(steps.setup.outputs.buildInfo).shortTag }}
+      app-name: ${{ env.BOSUN_APP }}
