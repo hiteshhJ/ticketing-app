@@ -17,11 +17,14 @@ export default function Header() {
       <HeaderSkipLink href="#maincontent">Skip to main content</HeaderSkipLink>
       <MainBar>
         <MainBarLogo brand="sainsburys" as={Link} href="/" />
-        <MainBarAppName>Web Application Template</MainBarAppName>
+        <MainBarAppName>Ticketing</MainBarAppName>
         <MainBarNavigation>
           <NavigationList>
-            <NavigationListItem as={Link} href="/example" isActive>
+            <NavigationListItem as={Link} href="/example">
               Authentication Example
+            </NavigationListItem>
+            <NavigationListItem as={Link} href="/admin">
+              Admin
             </NavigationListItem>
           </NavigationList>
         </MainBarNavigation>

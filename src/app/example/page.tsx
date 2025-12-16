@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Button, Alert, Display6 } from '@sainsburys-tech/fable'
 import { Blocked, InfoCircle } from '@sainsburys-tech/icons'
 
-export const metadata: Metadata = { title: 'Example | Web Application Template' }
+export const metadata: Metadata = { title: 'Example | Ticketing' }
 
 function SignOutButton() {
   return (

@@ -6,7 +6,7 @@ import Counter from '@/components/counter.client'
 import { Display6, Box, Display3 } from '@sainsburys-tech/fable'
 
 export const metadata: Metadata = {
-  title: 'Home | Web Application Template',
+  title: 'Home | Ticketing',
 }
 
 const Home = () => (

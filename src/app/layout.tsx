@@ -7,7 +7,7 @@ import '@/global.css'
 import Header from '@/components/header'
 
 export const metadata: Metadata = {
-  title: 'Web Application Template v3.0.0',
+  title: 'Ticketing v3.0.0',
 }
 
 // recommended for mobile apps so that the user does not zoom

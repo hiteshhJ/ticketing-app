@@ -1,4 +1,4 @@
-# Web Application Template
+# Ticketing
 
 This is an opinionated template for building a web application. It is designed primarily for internal and colleague facing applications within Sainsbury's, but can be extended to other domains.
 
@@ -120,7 +120,7 @@ You will need a redirect url per environment, ie.
 > [!TIP]
 > If you change the SSO provider `id` from `entra-pkce` to anything else, this will need to be reflected in your redirect url naming.
 
-You need to set the `NEXTAUTH_URL` environment variable as your application's discoverable URL, which would be different per environment.  This is a Bosun limitation, so we need to be explicit. Normally, `next-auth` should work automatically without it, but with our setup, we need to be specific.
+You need to set the `NEXTAUTH_URL` environment variable as your application's discoverable URL, which would be different per environment. This is a Bosun limitation, so we need to be explicit. Normally, `next-auth` should work automatically without it, but with our setup, we need to be specific.
 
 ### Limit which users can access the application via an allowlist
 
