@@ -1,0 +1,116 @@
+name: Deploy to Bosun
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Run linting
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build application
+        run: npm run build
+        env:
+          AUTH_SECRET: 'test-secret-for-build'
+          NEXTAUTH_URL: 'http://localhost:3000'
+
+  deploy-dev:
+    if: github.ref == 'refs/heads/develop'
+    needs: [test]
+    runs-on: ubuntu-latest
+    environment: dev
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bosun CLI
+        uses: sainsburys-tech/bosun-action@v2
+        with:
+          bosun-version: 'latest'
+
+      - name: Deploy to Dev
+        run: bosun deploy dev
+        env:
+          BOSUN_TOKEN: ${{ secrets.BOSUN_TOKEN }}
+
+      - name: Verify deployment
+        run: |
+          echo "Deployment to dev completed"
+          echo "Application URL: https://ticketing-app.int.dev.jspaas.uk"
+
+  deploy-stg:
+    if: github.ref == 'refs/heads/main'
+    needs: [test]
+    runs-on: ubuntu-latest
+    environment: staging
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bosun CLI
+        uses: sainsburys-tech/bosun-action@v2
+        with:
+          bosun-version: 'latest'
+
+      - name: Deploy to Staging
+        run: bosun deploy stg
+        env:
+          BOSUN_TOKEN: ${{ secrets.BOSUN_TOKEN }}
+
+      - name: Verify deployment
+        run: |
+          echo "Deployment to staging completed"
+          echo "Application URL: https://ticketing-app.int.stg.jspaas.uk"
+
+  deploy-prd:
+    if: github.ref == 'refs/heads/main'
+    needs: [deploy-stg]
+    runs-on: ubuntu-latest
+    environment: production
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Bosun CLI
+        uses: sainsburys-tech/bosun-action@v2
+        with:
+          bosun-version: 'latest'
+
+      - name: Deploy to Production
+        run: bosun deploy prd
+        env:
+          BOSUN_TOKEN: ${{ secrets.BOSUN_TOKEN }}
+
+      - name: Verify deployment
+        run: |
+          echo "Deployment to production completed"
+          echo "Application URL: https://ticketing-app.prd.jspaas.uk"
+
+      - name: Notify team
+        if: success()
+        run: |
+          echo "✅ Production deployment successful!"
+          echo "Please verify the deployment and monitor application logs."

@@ -1,22 +1,22 @@
 envVariables:
   NODE_ENV: production
-  NEXTAUTH_URL: 'https://ticketing-app.prd.jspaas.uk'
-  API_BASE_URL: 'vault:secret/data/team-nucleus/ticketing-app#API_BASE_URL_PRD'
+  NEXTAUTH_URL: 'https://ticketing-app.int.stg.jspaas.uk'
+  API_BASE_URL: 'vault:secret/data/team-nucleus/ticketing-app#API_BASE_URL_STG'
   API_USERNAME: 'vault:secret/data/team-nucleus/ticketing-app#API_USERNAME'
   API_PASSWORD: 'vault:secret/data/team-nucleus/ticketing-app#API_PASSWORD'
   AUTH_SECRET: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_SECRET'
   AUTH_MICROSOFT_ENTRA_ID_TENANT_ID: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_MICROSOFT_ENTRA_ID_TENANT_ID'
-  AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID_PRD'
+  AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID_STG'
   ENABLE_HSTS: 'true'
 
 bosun:
   deployment:
     config:
-      replicaCount: 3
+      replicaCount: 2
       resources:
         limits:
-          cpu: '2'
-          memory: 1Gi
+          cpu: '1'
+          memory: 512Mi
         requests:
-          cpu: '500m'
-          memory: 1Gi
+          cpu: '300m'
+          memory: 512Mi

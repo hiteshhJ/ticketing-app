@@ -1,8 +1,10 @@
 envVariables:
-  EXAMPLE: Hi there!
-  # THIS MUST BE REPLACED BY YOUR OWN SECRET
-  AUTH_SECRET: 'vault:secret/data/luna/boilerplate#AUTH_SECRET'
-  AUTH_URL: 'https://luna-boilerplate.int.dev.jspaas.uk'
-  AUTH_MICROSOFT_ENTRA_ID_TENANT_ID: e11fd634-26b5-47f4-8b8c-908e466e9bdf
-  AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID: b1eb1ab3-d330-44f9-8ec3-a16a413af0b7
-  NEW_RELIC_APP_NAME: web-application-template
+  NODE_ENV: production
+  NEXTAUTH_URL: 'https://ticketing-app.int.dev.jspaas.uk'
+  API_BASE_URL: 'vault:secret/data/team-nucleus/ticketing-app#API_BASE_URL_DEV'
+  API_USERNAME: 'vault:secret/data/team-nucleus/ticketing-app#API_USERNAME'
+  API_PASSWORD: 'vault:secret/data/team-nucleus/ticketing-app#API_PASSWORD'
+  AUTH_SECRET: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_SECRET'
+  AUTH_MICROSOFT_ENTRA_ID_TENANT_ID: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_MICROSOFT_ENTRA_ID_TENANT_ID'
+  AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID_DEV'
+  ENABLE_HSTS: 'false'

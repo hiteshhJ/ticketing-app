@@ -1,10 +1,10 @@
 import config from '@/config'
 import type { OfferType } from '@/types/offer-type'
 
-const AUTH_HEADER = 'Basic ' + btoa('username:password')
+const getAuthHeader = () => 'Basic ' + btoa(`${config.API_USERNAME}:${config.API_PASSWORD}`)
 
 export async function createOfferTypeApi(offerType: OfferType): Promise<OfferType> {
-  const authHeader = AUTH_HEADER
+  const authHeader = getAuthHeader()
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType`, {
     method: 'POST',
     headers: {
@@ -23,7 +23,7 @@ export async function createOfferTypeApi(offerType: OfferType): Promise<OfferTyp
 }
 
 export async function getOfferTypes(): Promise<OfferType[]> {
-  const authHeader = AUTH_HEADER
+  const authHeader = getAuthHeader()
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType`, {
     method: 'GET',
     headers: {
@@ -42,7 +42,7 @@ export async function getOfferTypes(): Promise<OfferType[]> {
 }
 
 export async function updateOfferTypeApi(offerType: OfferType): Promise<OfferType> {
-  const authHeader = AUTH_HEADER
+  const authHeader = getAuthHeader()
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType`, {
     method: 'PUT',
     headers: {
@@ -61,7 +61,7 @@ export async function updateOfferTypeApi(offerType: OfferType): Promise<OfferTyp
 }
 
 export async function deleteOfferTypeApi(offerTypeId: string): Promise<void> {
-  const authHeader = AUTH_HEADER
+  const authHeader = getAuthHeader()
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType?offerTypeCode=${encodeURIComponent(offerTypeId)}`, {
     method: 'DELETE',
     headers: {

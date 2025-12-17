@@ -1,9 +1,13 @@
 export interface OfferType {
+  id?: string
   offerType: string
-  threshold: number
-  promoTypeDesc: string
-  promoMechanicDesc: string
-  rewardMechanicType: string
+  threshold?: number | null
+  promoTypeDesc?: string | null
+  promoMechanicDesc?: string | null
+  rewardMechanicType?: string | null
+  createdDateTime?: string
+  lastUpdatedDateTime?: string
+  version?: number
 }
 
 export interface PaginatedOfferTypes {

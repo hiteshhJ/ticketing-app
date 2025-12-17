@@ -7,6 +7,8 @@ const config = {
   AUTH_MICROSOFT_ENTRA_ID_ISSUER: `https://login.microsoftonline.com/${process.env.AUTH_MICROSOFT_ENTRA_ID_TENANT_ID}/v2.0`,
   AUTH_PROTECTED_PATHS: /(\/admin|\/profile)/,
   API_BASE_URL: process.env.API_BASE_URL || 'http://localhost:8081',
+  API_USERNAME: process.env.API_USERNAME || 'username',
+  API_PASSWORD: process.env.API_PASSWORD || 'password',
   get EXAMPLE() {
     // getter example
     return process.env.EXAMPLE || 'Hello there!'

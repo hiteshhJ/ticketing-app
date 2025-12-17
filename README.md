@@ -1,8 +1,18 @@
 # Ticketing
 
-This is an opinionated template for building a web application. It is designed primarily for internal and colleague facing applications within Sainsbury's, but can be extended to other domains.
+Ticketing application Sainsbury's and Argos stores.
 
-It provides a sensible starting place with support for:
+## Our Mission
+
+We ensure the ticketing process runs seamlessly across Sainsbury's and Argos stores while modernising the architecture behind it. We're focused on building a future-ready foundation that supports accurate pricing, operational efficiency, and customer trust.
+
+## What We Do
+
+Ticketing is critical for price accuracy and customer trust. We manage the creation and printing of Shelf Edge Labels (SELs) and Electronic Shelf Edge Labels (ESELs) that display essential information including prices, promotions, product details, and planogram information across stores.
+
+## Technology Stack
+
+This application provides:
 
 - Building a component based React application.
 - Design System provided from [Fable](https://sainsburys-tech.github.io/design-systems/).
@@ -11,8 +21,6 @@ It provides a sensible starting place with support for:
 - Application configuration, including support for environment variables.
 - Content security policies and headers to mitigate common web application attacks.
 - Support for unit and component testing with [Jest](https://jestjs.io/) and [React Testing Library](https://testing-library.com/docs/react-testing-library/intro/).
-
-You can see the deployed template here [https://luna-boilerplate.int.dev.jspaas.uk/](https://luna-boilerplate.int.dev.jspaas.uk/). You will need to be on the VPN to do so.
 
 ## Getting Started
 
@@ -142,3 +150,150 @@ You need to set the `NEXTAUTH_URL` environment variable as your application's di
 - Click Add user/group
 - Select the specific users or groups you want to allow access
 - Click Assign
+
+## Deployment
+
+### Environments
+
+The application is deployed across three environments:
+
+- **Dev**: https://ticketing-app.int.dev.jspaas.uk (Auto-deploy from `develop` branch)
+- **Staging**: https://ticketing-app.int.stg.jspaas.uk (Auto-deploy from `main` branch)
+- **Production**: https://ticketing-app.prd.jspaas.uk (Auto-deploy from `main` branch after staging)
+
+All environments require VPN access.
+
+### Bosun Deployment
+
+The application is deployed using Bosun platform. Deployment happens automatically via GitHub Actions:
+
+- Pushing to `develop` branch deploys to **dev**
+- Pushing to `main` branch deploys to **staging** and **production** (after staging succeeds)
+
+#### Manual Deployment
+
+If you need to deploy manually:
+
+```bash
+# Install Bosun CLI
+npm install -g @sainsburys-tech/bosun-cli
+
+# Login to Bosun
+bosun login
+
+# Deploy to dev
+bosun deploy dev
+
+# Deploy to staging
+bosun deploy stg
+
+# Deploy to production
+bosun deploy prd
+```
+
+#### Managing Secrets
+
+All secrets are stored in Bosun Vault. See [BOSUN_VAULT_SECRETS.md](BOSUN_VAULT_SECRETS.md) for detailed instructions on:
+
+- Required secrets for each environment
+- How to set secrets in Bosun Vault
+- Azure AD App Registration configuration
+
+**Quick setup:**
+
+```bash
+# Set AUTH_SECRET (generate with: openssl rand -base64 32)
+bosun vault:set secret/data/team-nucleus/ticketing-app AUTH_SECRET "your-generated-secret"
+
+# Set Azure AD configuration
+bosun vault:set secret/data/team-nucleus/ticketing-app AUTH_MICROSOFT_ENTRA_ID_TENANT_ID "your-tenant-id"
+bosun vault:set secret/data/team-nucleus/ticketing-app AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID_DEV "dev-client-id"
+bosun vault:set secret/data/team-nucleus/ticketing-app AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID_STG "stg-client-id"
+bosun vault:set secret/data/team-nucleus/ticketing-app AUTH_MICROSOFT_ENTRA_ID_CLIENT_ID_PRD "prd-client-id"
+```
+
+#### Monitoring Deployments
+
+```bash
+# Check application status
+bosun app:info ticketing-app dev
+bosun app:info ticketing-app stg
+bosun app:info ticketing-app prd
+
+# View application logs
+bosun logs ticketing-app dev
+bosun logs ticketing-app stg
+bosun logs ticketing-app prd
+
+# Follow logs in real-time
+bosun logs ticketing-app dev --follow
+```
+
+#### Health Check
+
+Each environment provides a health check endpoint:
+
+```bash
+# Check if the application is healthy
+curl https://ticketing-app.int.dev.jspaas.uk/api/health
+```
+
+Expected response:
+
+```json
+{
+  "status": "healthy",
+  "timestamp": "2025-12-17T10:30:00.000Z",
+  "service": "ticketing-app",
+  "version": "1.0.0"
+}
+```
+
+### Deployment Configuration
+
+Environment-specific configuration is managed through Bosun YAML files:
+
+- `bosun.yaml` - Main configuration
+- `config/dev/bosun.yaml` - Dev environment overrides
+- `config/stg/bosun.yaml` - Staging environment overrides
+- `config/prd/bosun.yaml` - Production environment overrides
+
+**Important**: Never commit secrets to these files. Use Bosun Vault references like:
+
+```yaml
+AUTH_SECRET: 'vault:secret/data/team-nucleus/ticketing-app#AUTH_SECRET'
+```
+
+### CI/CD Pipeline
+
+The GitHub Actions workflow (`.github/workflows/deploy.yml`) handles:
+
+1. **Testing**: Runs linting, tests, and builds
+2. **Dev Deployment**: Auto-deploys when code is pushed to `develop`
+3. **Staging Deployment**: Auto-deploys when code is pushed to `main`
+4. **Production Deployment**: Auto-deploys to production after staging succeeds
+
+To trigger a deployment:
+
+- For dev: Push to `develop` branch
+- For staging & production: Push to `main` branch
+
+### Rollback
+
+If you need to rollback a deployment:
+
+```bash
+# List recent deployments
+bosun releases ticketing-app prd
+
+# Rollback to a specific version
+bosun rollback ticketing-app prd <version-number>
+```
+
+### Contact
+
+For deployment issues or questions:
+
+- Team: Team Nucleus
+- Email: team_nucleus@sainsburys.co.uk
+- Product Manager: Dan Ellicott

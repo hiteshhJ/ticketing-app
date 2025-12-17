@@ -9,7 +9,7 @@ const securityHeaders = [
     value: [
       "default-src 'none'",
       // Allow connections to the application's domain, to data URLs and to Microsoft's login URLs for SSO.
-      "connect-src 'self' data: https://login.microsoftonline.com http://localhost:8081",
+      "connect-src 'self' data: https://login.microsoftonline.com http://localhost:8081 https://*.jspaas.uk",
       "font-src 'self' https://cdn.sainsburys.co.uk https://cdn.argos.co.uk https://cdn.habitat.co.uk https://cdn.tu.co.uk",
       "img-src 'self' data: https:",
       // unsafe-inline and unsafe-eval are required here to use the application in development mode.
