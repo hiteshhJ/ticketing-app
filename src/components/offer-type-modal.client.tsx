@@ -17,6 +17,8 @@ interface OfferTypeModalProps {
 }
 
 export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferTypeModalProps) {
+  const inputStyle = { width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }
+  
   const [formData, setFormData] = useState({
     offerType: '',
     threshold: '',
@@ -113,7 +115,7 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
           {hasErrored && (
             <Alert
               status="error"
-              label={result?.serverError || 'Failed to create offer type'}
+              label={result.serverError || 'Failed to create offer type'}
               leadingIcon={<InfoCircle />}
               style={{ marginBottom: '4px', fontSize: '10px' }}
             />
@@ -131,7 +133,7 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
                   value={formData.offerType}
                   onChange={(e) => { setFormData({ ...formData, offerType: e.target.value }); }}
                   required
-                  style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
+                  style={inputStyle}
                 />
               </Box>
 
@@ -144,7 +146,7 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
                   type="number"
                   value={formData.threshold}
                   onChange={(e) => { setFormData({ ...formData, threshold: e.target.value }); }}
-                  style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
+                  style={inputStyle}
                 />
               </Box>
             </Box>
@@ -158,7 +160,7 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
                 type="text"
                 value={formData.promoTypeDesc}
                 onChange={(e) => { setFormData({ ...formData, promoTypeDesc: e.target.value }); }}
-                style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
+                style={inputStyle}
               />
             </Box>
 
@@ -171,7 +173,7 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
                 type="text"
                 value={formData.promoMechanicDesc}
                 onChange={(e) => { setFormData({ ...formData, promoMechanicDesc: e.target.value }); }}
-                style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
+                style={inputStyle}
               />
             </Box>
 
@@ -184,7 +186,7 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
                 type="text"
                 value={formData.rewardMechanicType}
                 onChange={(e) => { setFormData({ ...formData, rewardMechanicType: e.target.value }); }}
-                style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
+                style={inputStyle}
               />
             </Box>
 

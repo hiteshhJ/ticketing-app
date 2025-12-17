@@ -1,8 +1,10 @@
 import config from '@/config'
-import type { OfferType, PaginatedOfferTypes } from '@/types/offer-type'
+import type { OfferType } from '@/types/offer-type'
+
+const AUTH_HEADER = 'Basic ' + btoa('username:password')
 
 export async function createOfferTypeApi(offerType: OfferType): Promise<OfferType> {
-  const authHeader = 'Basic ' + btoa('username:password')
+  const authHeader = AUTH_HEADER
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType`, {
     method: 'POST',
     headers: {
@@ -13,15 +15,15 @@ export async function createOfferTypeApi(offerType: OfferType): Promise<OfferTyp
   })
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: 'Failed to create offer type' }))
+    const error = await response.json().catch(() => ({ message: 'Failed to create offer type' })) as { message: string }
     throw new Error(error.message || 'Failed to create offer type')
   }
 
-  return response.json()
+  return response.json() as Promise<OfferType>
 }
 
 export async function getOfferTypes(): Promise<OfferType[]> {
-  const authHeader = 'Basic ' + btoa('username:password')
+  const authHeader = AUTH_HEADER
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType`, {
     method: 'GET',
     headers: {
@@ -35,12 +37,12 @@ export async function getOfferTypes(): Promise<OfferType[]> {
     throw new Error('Failed to fetch offer types')
   }
 
-  const data = await response.json()
+  const data = await response.json() as OfferType[]
   return Array.isArray(data) ? data : []
 }
 
 export async function updateOfferTypeApi(offerType: OfferType): Promise<OfferType> {
-  const authHeader = 'Basic ' + btoa('username:password')
+  const authHeader = AUTH_HEADER
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType`, {
     method: 'PUT',
     headers: {
@@ -51,15 +53,15 @@ export async function updateOfferTypeApi(offerType: OfferType): Promise<OfferTyp
   })
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: 'Failed to update offer type' }))
+    const error = await response.json().catch(() => ({ message: 'Failed to update offer type' })) as { message: string }
     throw new Error(error.message || 'Failed to update offer type')
   }
 
-  return response.json()
+  return response.json() as Promise<OfferType>
 }
 
 export async function deleteOfferTypeApi(offerTypeId: string): Promise<void> {
-  const authHeader = 'Basic ' + btoa('username:password')
+  const authHeader = AUTH_HEADER
   const response = await fetch(`${config.API_BASE_URL}/api/v1/offerType?offerTypeCode=${encodeURIComponent(offerTypeId)}`, {
     method: 'DELETE',
     headers: {
@@ -68,7 +70,7 @@ export async function deleteOfferTypeApi(offerTypeId: string): Promise<void> {
   })
 
   if (!response.ok) {
-    const error = await response.json().catch(() => ({ message: 'Failed to delete offer type' }))
+    const error = await response.json().catch(() => ({ message: 'Failed to delete offer type' })) as { message: string }
     throw new Error(error.message || 'Failed to delete offer type')
   }
 }

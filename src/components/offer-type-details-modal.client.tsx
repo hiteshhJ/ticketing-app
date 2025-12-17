@@ -7,6 +7,8 @@ import { InfoCircle, CheckCircle } from '@sainsburys-tech/icons'
 import { updateOfferType, deleteOfferType } from '@/actions/offer-type'
 import type { OfferType } from '@/types/offer-type'
 
+const BORDER_STYLE = '1px solid #d1d5db'
+
 interface OfferTypeDetailsModalProps {
   isOpen: boolean
   onClose: () => void
@@ -108,7 +110,7 @@ export default function OfferTypeDetailsModal({
           backgroundColor: '#ffffff',
           borderRadius: '8px',
           boxShadow: '0 4px 12px rgba(0, 0, 0, 0.15)',
-          border: '1px solid #d1d5db',
+          border: BORDER_STYLE,
           width: '90%',
           maxWidth: '500px',
           minWidth: '320px',
@@ -120,7 +122,7 @@ export default function OfferTypeDetailsModal({
         }}
       >
         {/* Header */}
-        <Box style={{ padding: '16px 20px', borderBottom: '1px solid #e5e7eb' }}>
+        <Box style={{ padding: '16px 20px', borderBottom: BORDER_STYLE }}>
           <h2 style={{ fontSize: '18px', fontWeight: '600', margin: 0 }}>Offer Type Details</h2>
         </Box>
 
@@ -138,7 +140,7 @@ export default function OfferTypeDetailsModal({
           {updateErrored && (
             <Alert
               status="error"
-              label={updateResult?.serverError || 'Failed to update offer type'}
+              label={updateResult.serverError || 'Failed to update offer type'}
               leadingIcon={<InfoCircle />}
               style={{ marginBottom: '12px' }}
             />
@@ -156,7 +158,7 @@ export default function OfferTypeDetailsModal({
           {deleteErrored && (
             <Alert
               status="error"
-              label={deleteResult?.serverError || 'Failed to delete offer type'}
+              label={deleteResult.serverError || 'Failed to delete offer type'}
               leadingIcon={<InfoCircle />}
               style={{ marginBottom: '12px' }}
             />
@@ -186,7 +188,7 @@ export default function OfferTypeDetailsModal({
                       width: '100%',
                       padding: '8px 12px',
                       fontSize: '14px',
-                      border: '1px solid #d1d5db',
+                      border: BORDER_STYLE,
                       borderRadius: '4px',
                       backgroundColor: '#f3f4f6',
                       color: '#6b7280',
@@ -204,11 +206,11 @@ export default function OfferTypeDetailsModal({
                   <input
                     id="threshold"
                     type="number"
-                    value={formData.threshold ?? ''}
+                    value={formData.threshold}
                     onChange={(e) => {
                       setFormData({ ...formData, threshold: Number(e.target.value) })
                     }}
-                    style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: '1px solid #d1d5db', borderRadius: '4px' }}
+                    style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: BORDER_STYLE, borderRadius: '4px' }}
                   />
                 </Box>
               </Box>
@@ -227,7 +229,7 @@ export default function OfferTypeDetailsModal({
                   onChange={(e) => {
                     setFormData({ ...formData, promoTypeDesc: e.target.value })
                   }}
-                  style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: '1px solid #d1d5db', borderRadius: '4px' }}
+                  style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: BORDER_STYLE, borderRadius: '4px' }}
                 />
               </Box>
 
@@ -245,7 +247,7 @@ export default function OfferTypeDetailsModal({
                   onChange={(e) => {
                     setFormData({ ...formData, promoMechanicDesc: e.target.value })
                   }}
-                  style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: '1px solid #d1d5db', borderRadius: '4px' }}
+                  style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: BORDER_STYLE, borderRadius: '4px' }}
                 />
               </Box>
 
@@ -263,7 +265,7 @@ export default function OfferTypeDetailsModal({
                   onChange={(e) => {
                     setFormData({ ...formData, rewardMechanicType: e.target.value })
                   }}
-                  style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: '1px solid #d1d5db', borderRadius: '4px' }}
+                  style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: BORDER_STYLE, borderRadius: '4px' }}
                 />
               </Box>
             </form>
@@ -271,7 +273,7 @@ export default function OfferTypeDetailsModal({
         </Box>
 
         {/* Footer */}
-        <Box style={{ padding: '16px 20px', borderTop: '1px solid #e5e7eb' }}>
+        <Box style={{ padding: '16px 20px', borderTop: BORDER_STYLE }}>
           {showDeleteConfirm ? (
             <Box style={{ display: 'flex', justifyContent: 'space-between', gap: '12px' }}>
               <Button
