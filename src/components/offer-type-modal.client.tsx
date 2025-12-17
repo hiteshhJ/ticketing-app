@@ -137,14 +137,13 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
 
               <Box>
                 <label htmlFor="threshold" style={{ display: 'block', marginBottom: '1px', fontSize: '10px', fontWeight: '600' }}>
-                  Threshold *
+                  Threshold
                 </label>
                 <input
                   id="threshold"
                   type="number"
                   value={formData.threshold}
                   onChange={(e) => { setFormData({ ...formData, threshold: e.target.value }); }}
-                  required
                   style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
                 />
               </Box>
@@ -152,42 +151,39 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
 
             <Box style={{ marginTop: '4px' }}>
               <label htmlFor="promoTypeDesc" style={{ display: 'block', marginBottom: '1px', fontSize: '10px', fontWeight: '600' }}>
-                Promo Type Description *
+                Promo Type Description
               </label>
               <input
                 id="promoTypeDesc"
                 type="text"
                 value={formData.promoTypeDesc}
                 onChange={(e) => { setFormData({ ...formData, promoTypeDesc: e.target.value }); }}
-                required
                 style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
               />
             </Box>
 
             <Box style={{ marginTop: '4px' }}>
               <label htmlFor="promoMechanicDesc" style={{ display: 'block', marginBottom: '1px', fontSize: '10px', fontWeight: '600' }}>
-                Promo Mechanic Description *
+                Promo Mechanic Description
               </label>
               <input
                 id="promoMechanicDesc"
                 type="text"
                 value={formData.promoMechanicDesc}
                 onChange={(e) => { setFormData({ ...formData, promoMechanicDesc: e.target.value }); }}
-                required
                 style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
               />
             </Box>
 
             <Box style={{ marginTop: '4px' }}>
               <label htmlFor="rewardMechanicType" style={{ display: 'block', marginBottom: '1px', fontSize: '10px', fontWeight: '600' }}>
-                Reward Mechanic Type *
+                Reward Mechanic Type
               </label>
               <input
                 id="rewardMechanicType"
                 type="text"
                 value={formData.rewardMechanicType}
                 onChange={(e) => { setFormData({ ...formData, rewardMechanicType: e.target.value }); }}
-                required
                 style={{ width: '100%', padding: '3px 5px', fontSize: '11px', border: '1px solid #d1d5db', borderRadius: '3px' }}
               />
             </Box>

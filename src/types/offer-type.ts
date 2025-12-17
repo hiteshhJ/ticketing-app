@@ -5,3 +5,11 @@ export interface OfferType {
   promoMechanicDesc: string
   rewardMechanicType: string
 }
+
+export interface PaginatedOfferTypes {
+  content: OfferType[]
+  totalElements: number
+  totalPages: number
+  number: number
+  size: number
+}
