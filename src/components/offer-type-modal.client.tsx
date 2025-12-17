@@ -41,10 +41,10 @@ export default function OfferTypeModal({ isOpen, onClose, onSuccess }: OfferType
     e.preventDefault()
     await executeAsync({
       offerType: formData.offerType,
-      threshold: Number(formData.threshold),
-      promoTypeDesc: formData.promoTypeDesc,
-      promoMechanicDesc: formData.promoMechanicDesc,
-      rewardMechanicType: formData.rewardMechanicType,
+      threshold: formData.threshold === '' ? null : Number(formData.threshold),
+      promoTypeDesc: formData.promoTypeDesc || null,
+      promoMechanicDesc: formData.promoMechanicDesc || null,
+      rewardMechanicType: formData.rewardMechanicType || null,
     })
   }
 

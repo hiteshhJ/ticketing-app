@@ -206,11 +206,11 @@ export default function OfferTypeDetailsModal({
                   <input
                     id="threshold"
                     type="number"
-                    value={formData.threshold}
+                    value={formData.threshold ?? ''}
                     onChange={(e) => {
-                      setFormData({ ...formData, threshold: Number(e.target.value) })
+                      setFormData({ ...formData, threshold: e.target.value === '' ? null : Number(e.target.value) })
                     }}
-                    style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: BORDER_STYLE, borderRadius: '4px' }}
+                    style={{ width: '100%', padding: '8px 12px', fontSize: '14px', border: '1px solid #d1d5db', borderRadius: '4px' }}
                   />
                 </Box>
               </Box>

@@ -6,10 +6,10 @@ import { createOfferTypeApi, getOfferTypes as getOfferTypesApi, updateOfferTypeA
 
 const offerTypeSchema = z.object({
   offerType: z.string().min(1, 'Offer type is required'),
-  threshold: z.number().optional(),
-  promoTypeDesc: z.string().optional(),
-  promoMechanicDesc: z.string().optional(),
-  rewardMechanicType: z.string().optional(),
+  threshold: z.number().nullable().optional(),
+  promoTypeDesc: z.string().nullable().optional(),
+  promoMechanicDesc: z.string().nullable().optional(),
+  rewardMechanicType: z.string().nullable().optional(),
 })
 
 export const createOfferType = actionClient.schema(offerTypeSchema).action(async ({ parsedInput }) => {
