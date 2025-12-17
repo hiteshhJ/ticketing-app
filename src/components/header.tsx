@@ -8,7 +8,7 @@ import {
   NavigationListItem,
   HeaderSkipLink
 } from '@sainsburys-tech/fable'
-
+import { User } from '@sainsburys-tech/icons'
 import Link from 'next/link'
 
 export default function Header() {
@@ -19,12 +19,12 @@ export default function Header() {
         <MainBarLogo brand="sainsburys" as={Link} href="/" />
         <MainBarAppName>Ticketing</MainBarAppName>
         <MainBarNavigation>
-          <NavigationList>
-            <NavigationListItem as={Link} href="/example">
-              Authentication Example
-            </NavigationListItem>
+          <NavigationList style={{ display: 'flex', width: '100%', justifyContent: 'space-between' }}>
             <NavigationListItem as={Link} href="/admin">
               Admin
+            </NavigationListItem>
+            <NavigationListItem as={Link} href="/profile" style={{ marginLeft: 'auto' }}>
+              <User aria-label="User Profile" style={{ width: '24px', height: '24px' }} />
             </NavigationListItem>
           </NavigationList>
         </MainBarNavigation>
