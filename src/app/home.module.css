@@ -1,5 +1,0 @@
-@reference "../global.css";
-
-.welcome {
-  @apply fable:font-bold;
-}
